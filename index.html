@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Mix by and</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Modelos de Milkshake na lista e no carrinho -->
+    <div class="models">
+        <!-- Milkshake na lista -->
+        <div class="milk-item">
+            <a href="">
+                <div class="milk-item--img"><img src="" alt=""></div>
+                <div class="milk-item--add">+</div>
+            </a>
+
+            <div class="milk-item--price">R$ --</div>
+            <div class="milk-item--name">--</div>
+            <div class="milk-item--desc">--</div>
+        </div>
+
+        <!-- Milkshake no carrinho -->
+        <div class="cart--item">
+            <img src="" alt="">
+            <div class="cart--item-nome">--</div>
+            <div class="cart--item--qtarea">
+                <button class="cart--item-qtmenos">-</button>
+                <div class="cart--iteme-qt">1</div>
+                <button class="cart--item-qtmais">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu que aparecera no mobile -->
+    <header>
+        <h1>Mr Mix by and</h1>
+        <div class="menu-openner"><span>0</span>&#128722;</div>
+    </header>
+
+    <!-- Conteudo principal -->
+    <main>
+        <h2>Milk Shakes</h2>
+
+        <div class="milkshake-area"></div>
+        <footer>
+            <p>Copyrights 2023 by &#169; <a href="https://github.com/luvsscorpius" target="_blank">and</a></p>
+        </footer>
+    </main>
+
+    <!-- aside do carrinho -->
+    <aside>
+        <div class="cart--area">
+            <div class="menu-closer">❌</div>
+            <h1>Seus Milkshakes</h1>
+            <div class="cart"></div>
+            <div class="cart--details">
+                <div class="cart--totalitem subtotal">
+                    <span>Subtotal</span>
+                    <span>R$ --</span>
+                </div>
+
+                <div class="cart--totalitem desconto">
+                    <span>Desconto</span>
+                    <span>R$ --</span>
+                </div>
+
+                <div class="cart--totalitem total">
+                    <span>Total</span>
+                    <span>R$ --</span>
+                </div>
+                <div class="cart--finalizar">Finalizar a compra</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Janela modal .milkshakeWindowArea -->
+    <div class="milkshakeWindowArea">
+        <div class="milkshakeWindowBody">
+            <div class="milkshakeInfo--cancelMobileButton">Voltar</div>
+            <div class="milkshakeBig">
+                <img src="" alt="">
+            </div>
+
+            <!-- Milkshake Info -->
+            <div class="milkshakeInfo">
+                <h1>--</h1>
+                <div class="milkshakeInfo--desc">--</div>
+                <div class="milkshakeInfo--sizearea">
+                    <div class="milkshakeInfo--sector">Tamanho</div>
+                    <div class="milkshekInfo--sizes">
+                        <div data-key="300" class="milkshakeInfo--size">PEQUENO</div>
+                        <div data-key="400" class="milkshakeInfo--size">MÉDIO</div>
+                        <div data-key="500" class="milkshakeInfo--size">GRANDE</div>
+                    </div>
+                </div>
+
+                <!-- Milkshake preco -->
+                <div class="milkshakeInfo--pricearea">
+                    <div class="milkshakeInfo--sector">Preço</div>
+                    <div class="milkshakeInfo--price">
+                        <div class="milkshakeInfo--actualPrice">R$ --</div>
+                        <div class="milkshakeInfo--qtarea">
+                            <button class="milkshake--qtmenos">-</button>
+                            <div class="milkshakeInfo--qt">1</div>
+                            <button class="milkshakeInfo--qtmais">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="milkshakeInfo--addButton">Adicionar ao carrinho</div>
+                <div class="milkshakeInfo--cancelButton">Cancelar</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
