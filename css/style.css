@@ -42,13 +42,10 @@ body {
 .milk-item--img {
     width: 200px;
     height: 200px;
-    background-color: #eee;
-    border-radius: 100px;
-    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.2);
 }
 
 .milk-item--img img {
-    width: 65%;
+    width: 100%;
     height: auto;
 }
 
@@ -248,7 +245,7 @@ h2 {
 
 .milkshake-area {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 footer {

@@ -1,5 +1,10 @@
 let MilkshakeJson = [
-    { id: 1, name: 'Tradicional', img: 'img/tradicional.png', prices: [14.00, 17.00, 19.00], sizes: ['300', '400', '500'], description: 'Milkshake tradicional com leite, chantily e sorvete' },
-    { id: 2, name: 'Baunilha', img: 'img/baunilha.png', prices: [15.00, 18.00, 20.00], sizes: ['300', '400', '500'], description: 'Sorvete, leite, chantily e baunilha' },
-    { id: 3, name: 'Morango', img: 'img/morango.png', prices: [20.00, 25.00, 30.00], sizes: ['300', '400', '500'], description: 'Sorvete, leite, chantily e morangos batidos' }
+    { id: 1, name: 'Abacaxi', img: 'img/milk-abacaxi.png', prices: [14.00, 17.00, 19.00], sizes: ['300', '400', '500'], description: 'Perfeita combinação entre a refrescância do abacaxi e cremosidade do leite' },
+    { id: 2, name: 'Abacaxi com hortelã', img: 'img/milk-abacaxi-com-hortela.png', prices: [15.00, 18.00, 20.00], sizes: ['300', '400', '500'], description: 'Perfeita combinação entre a refrescância do abacaxi e a cremosidade do leite e um toque de hortelã.' },
+    { id: 3, name: 'Banana com chocolate', img: 'img/milk-banana-com-chocolate.png', prices: [14.00, 16.00, 18.00], sizes: ['300', '400', '500'], description: 'Sabor surpreendente de banana com pedaços de chocolate' },
+    { id: 4, name: 'Brigadeiro', img: 'img/milk-brigadeiro.png', prices: [16.00, 18.00, 20.00], sizes: ['300', '400', '500'], description: 'O delicioso sabor do docinho mais famoso do Brasil' },
+    { id: 5, name: 'Ceú azul', img: 'img/milk-ceu-azul.png', prices: [14.00, 16.00, 17.00], sizes: ['300', '400', '500'], description: 'Sabor de nata, docinho, refrescante e com a divertida cor azul' },
+    { id: 6, name: 'Chantilícia banoffe', img: 'img/milk-chantilicia-banoffe.png', prices: [17.00, 19.00, 20.00], sizes: ['300', '400', '500'], description: 'Milk Shake sabor Doce de Leite com pedaços de Banana e Crocantes pedacinhos de Biscoito Maria. Finalizado com um Topo delicioso de Chantilly e Cobertura de Chocolate' },
+    { id: 7, name: 'Chantilícia bombom de morango', img: 'img/milk-chantilicia-bombom-de-morango.png', prices: [19.00, 21.00, 23.00], sizes: ['300', '400', '500'], description: 'Milk Shake de Morango com pedacinhos de Chocolate, trufado com Creme de Avelã. Cobertura de Chantilly com toque de chocolate em pó e calda de Polpa de Morango' },
+    { id: 8, name: 'Chantilícia de brigadeiro trufado', img: 'img/milk-chantilicia-brigadeiro-trufado.png', prices: [20.00, 22.00, 25.00], sizes: ['300', '400', '500'], description: 'Milk Shake de Brigadeiro com pedaços de chocolate, trufado com Creme de Avelã. Cobertura de Chantilly, Granulado e calda de Chocolate Nestlé®' }
 ]
