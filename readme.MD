@@ -1,0 +1,1 @@
+Este é um projeto de loja de Milk Shake com JavaScript
