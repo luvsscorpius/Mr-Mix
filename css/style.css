@@ -248,6 +248,16 @@ h2 {
     grid-template-columns: repeat(4, 1fr);
 }
 
+.cascao-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.kids-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
 footer {
     left: 0;
     right: 0;

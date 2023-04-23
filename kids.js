@@ -1,0 +1,10 @@
+let KidsJson = [
+    { id: 1, name: 'Cascão Arco-Íris', img: 'img/Kids/cascão-arco-íris.png', price: [5.00, 7.00, 9.00], sizes: ['P', 'M', 'G'], description: 'Um delicioso cascão trufado com Creme de Avelã e o sorvete exclusivo da Mr. Mix, finalizado com cobertura de tutti-frutti, céu azul ou morango (a escolha do cliente), granulados coloridos e marshmallow. A criançada ama!' },
+    { id: 2, name: 'Céu azul', img: 'img/Kids/ceu-azul.png', price: [14.00, 16.00, 17.00], sizes: ['300', '400', '500'], description: 'Sabor de nata, docinho, refrescante e com a divertida cor azul' },
+    { id: 3, name: 'Chiclete', img: 'img/Kids/chiclete.png', price: [14.00, 15.00, 16.00], sizes: ['300', '400', '500'], description: 'Delicioso gostinho de chiclete' },
+    { id: 4, name: 'Club Mix Kids', img: 'img/Kids/sundae.png', price: [12.00, 14.00, 15.00], sizes: ['P', 'M', 'G'], description: 'Nosso delicioso sorvete Mr. Mix com cobertura de tutti-frutti, morango ou céu azul (a escolha do cliente), finalizado com deliciosos confetes.' },
+    { id: 5, name: 'Shake Unicórnio Céu azul', img: 'img/Kids/unicornio.png', price: [13.00, 15.00, 17.00], sizes: ['300', '400', '500'], description: 'O Milk Shake Unicórnio Céu Azul é surpreendente no sabor, cremoso, colorido e cheio de confeitos' },
+    { id: 6, name: 'Shake Unicórnio Chiclete', img: 'img/Kids/unicornio-chiclete.png', price: [15.00, 17.00, 19.00], sizes: ['300', '400', '500'], description: 'O Milk Shake Unicórnio Chiclete é surpreendente no sabor intenso, cremoso, colorido e cheio de confeitos' },
+    { id: 7, name: 'Sunde Arco-Íris', img: 'img/Kids/sundae-chiclete.png', price: [12.00, 14.00, 15.00], sizes: ['P', 'M', 'G'], description: 'O sorvete Mr. Mix com muita cobertura de tutti-frutti, morango ou céu azul (a escolha do cliente), finalizado com granulados coloridos e um marshmallow fofo!' },
+    { id: 8, name: 'Ninho trufado', img: 'img/Kids/creme-ninho-trufado.png', price: [10.00, 12.00, 14.00], sizes: ['300', '400', '500'], description: 'O nosso delicioso sorvete com Ninho® e chocolate Nestlé®' }
+]
