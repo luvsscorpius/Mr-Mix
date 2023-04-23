@@ -21,4 +21,5 @@ let MilkshakeJson = [
     },
     { id: 19, name: 'Iogurte com amora', img: 'img/Milkshakes/milk-iogurte-com-amora.png', price: [15.00, 16.00, 18, 00], sizes: ['300', '400', '500'], description: 'O sabor do Iogurte com deliciosa de polpa de amora' },
     { id: 20, name: 'Leite condensado ', img: 'img/Milkshakes/milk-leite-condensado.png', price: [16.00, 18.00, 20.00], sizes: ['300', '400', '500'], description: 'Uma delícia que dispensa apresentações' }
-]   
+]
+

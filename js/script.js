@@ -62,7 +62,7 @@ const pegarKeyMilk = (e) => {
 }
 
 const pegarKeyCascao = (e) => {
-    let key = e.target.closest('.milk-item').getAttribute('data-key')
+    let key = e.target.closest('.milk-item').getAttribute('.data-key')
     console.log('Cascao Clicado ' + key)
     console.log(cascaoJson[key])
 
