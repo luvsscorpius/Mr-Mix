@@ -8,7 +8,7 @@ const selecionaTodos = (elemento) => document.querySelectorAll(elemento)
 const preencherDadosDosMilkshakes = (milkshakeItem, item, index) => {
     milkshakeItem.setAttribute('data-key', index)
     milkshakeItem.querySelector('.milk-item--img img').src = item.img
-    milkshakeItem.querySelector('.milk-item--price').innerHTML = item.prices
+    milkshakeItem.querySelector('.milk-item--price').innerHTML = item.price
     milkshakeItem.querySelector('.milk-item--name').innerHTML = item.name
     milkshakeItem.querySelector('.milk-item--desc').innerHTML = item.description
 }
