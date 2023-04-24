@@ -62,12 +62,26 @@ const pegarKeyMilk = (e) => {
 }
 
 const pegarKeyCascao = (e) => {
-    let key = e.target.closest('.milk-item').getAttribute('.data-key')
+    let key = e.target.closest('.milk-item').getAttribute('data-key')
     console.log('Cascao Clicado ' + key)
     console.log(cascaoJson[key])
 
     // garantir que a quantidade inicial de milkshakes é 1 
     qtCascao = 1
+
+    //para manter a informação de qual milkshake foi clicado
+    modalKey = key
+
+    return key
+}
+
+const pegarKeyKids = (e) => {
+    let key = e.target.closest('.milk-item').getAttribute('data-key')
+    console.log('Cascao Clicado ' + key)
+    console.log(KidsJson[key])
+
+    // garantir que a quantidade inicial de milkshakes é 1 
+    qtKids = 1
 
     //para manter a informação de qual milkshake foi clicado
     modalKey = key
@@ -190,6 +204,8 @@ KidsJson.map((item, index) => {
     kidsItem.querySelector('.milk-item a').addEventListener('click', (e) => {
         e.preventDefault() // faz com que não faça o padrao que no caso do a seria dar refresh
         console.log('Clicou em algum produto da area kids')
+
+        let chave = pegarKeyKids(e)
 
         // Para abrir o modal quando for clicado em algum cascão
         abrirModal()
