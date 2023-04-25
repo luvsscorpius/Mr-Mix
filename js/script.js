@@ -200,7 +200,10 @@ const mudarQuantidade = () => {
     })
 }
 
-produtosJson.map((item, index) => {
+// Mapear os Milkshakes
+const milkshakes = produtosJson.filter((produto) => produto.type === "Milkshake")
+console.log(milkshakes)
+milkshakes.map((item, index) => {
     console.log(item)
 
     let milkshakeItem = document.querySelector('.models .milk-item').cloneNode(true) // cloneNode faz uma copia dos elementos
@@ -216,10 +219,7 @@ produtosJson.map((item, index) => {
         e.preventDefault() // faz o a (link) nao fazer o padrao que é dar refresh
         console.log('Clicou no milkshake')
 
-        let chave = pegarKey(e)
-
-        //definir quantidade inicial como 1
-        seleciona('.milkshakeInfo--qt').innerHTML = qtProdutos
+        let chave = pegarKeyMilk(e)
 
         // quando clicar em um milkshake a janela modal abre
         abrirModal()
@@ -230,11 +230,72 @@ produtosJson.map((item, index) => {
         // preencher os dados dos vetores no modal 
         preencheDadosModal(item)
 
-        // para mudar a quantidade de milkshakes
-        mudarQuantidade()
+    })
+})
 
-        // carinho
-        adicionarNoCarrinho()
+// Mapear os cascões
+const cascao = produtosJson.filter((produto) => produto.type === "Cascao")
+console.log(cascao)
+cascao.map((item, index) => {
+    console.log(item)
+
+    let cascaoItem = document.querySelector('.models .milk-item').cloneNode(true) // clona o elemento
+
+    // agora que foi clonado vamos colocar na main visualmente
+    seleciona('.cascao-area').append(cascaoItem)
+
+    // agora que ja está aparecendo visualmente simbora preencher os dados de acordo com o script
+    preencherDadosDosCascao(cascaoItem, item, index)
+
+    // agora queremos saber se o cascao foi clicado
+    cascaoItem.querySelector('.milk-item a').addEventListener('click', (e) => {
+        e.preventDefault()  // faz com que o link não faça o padrão que seria dar o refresh
+        console.log('Clicou no cascão')
+
+        let chave = pegarKeyMilk(e)
+
+        // Para abrir o modal quando for clicado em algum cascão
+        abrirModal()
+
+        // para fechar o modal quando for clicado em algum botao de cancelar/voltar
+        botoesFechar()
+
+        // preencher os dados dos vetores no modal 
+        preencheDadosModal(item)
+
+    })
+
+})
+
+//Mapear a area kids
+const kids = produtosJson.filter((produto) => produto.type === "Kids")
+console.log(kids)
+kids.map((item, index) => {
+    console.log(item)
+
+    let kidsItem = document.querySelector('.models .milk-item').cloneNode(true) //clona o elemento
+
+    // depois de clonado tem que aparecer na tela né?
+    seleciona('.kids-area').append(kidsItem)
+
+    // e agora preencher os dados no que foi clonado
+    preencherDadosKids(kidsItem, item, index)
+
+    // agora precisamos saber se algum produto da area kids foi clicado
+    kidsItem.querySelector('.milk-item a').addEventListener('click', (e) => {
+        e.preventDefault() // faz com que não faça o padrao que no caso do a seria dar refresh
+        console.log('Clicou em algum produto da area kids')
+
+        let chave = pegarKeyMilk(e)
+
+        // Para abrir o modal quando for clicado em algum cascão
+        abrirModal()
+
+        // para fechar o modal quando for clicado em algum botao de cancelar/voltar
+        botoesFechar()
+
+        // preencher os dados dos vetores no modal 
+        preencheDadosModal(item)
 
     })
 })
