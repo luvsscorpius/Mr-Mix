@@ -50,7 +50,7 @@ const botoesFechar = () => {
 const pegarKeyMilk = (e) => {
     let key = e.target.closest('.milk-item').getAttribute('data-key')
     console.log('Milkshake Clicado ' + key)
-    console.log(MilkshakeJson[key])
+    console.log(produtosJson[key])
 
     // garantir que a quantidade inicial de milkshakes é 1 
     qtMilkshakes = 1
@@ -60,36 +60,6 @@ const pegarKeyMilk = (e) => {
 
     return key
 }
-
-const pegarKeyCascao = (e) => {
-    let key = e.target.closest('.milk-item').getAttribute('data-key')
-    console.log('Cascao Clicado ' + key)
-    console.log(cascaoJson[key])
-
-    // garantir que a quantidade inicial de milkshakes é 1 
-    qtCascao = 1
-
-    //para manter a informação de qual milkshake foi clicado
-    modalKey = key
-
-    return key
-}
-
-const pegarKeyKids = (e) => {
-    let key = e.target.closest('.milk-item').getAttribute('data-key')
-    console.log('Cascao Clicado ' + key)
-    console.log(KidsJson[key])
-
-    // garantir que a quantidade inicial de milkshakes é 1 
-    qtKids = 1
-
-    //para manter a informação de qual milkshake foi clicado
-    modalKey = key
-
-    return key
-}
-
-
 
 const preencherDadosDosMilkshakes = (milkshakeItem, item, index) => {
     milkshakeItem.setAttribute('data-key', index)
@@ -123,8 +93,9 @@ const preencheDadosModal = (item) => {
 }
 
 // Mapear os Milkshakes
-
-MilkshakeJson.map((item, index) => {
+const milkshakes = produtosJson.filter((produto) => produto.type === "Milkshake")
+console.log(milkshakes)
+milkshakes.map((item, index) => {
     console.log(item)
 
     let milkshakeItem = document.querySelector('.models .milk-item').cloneNode(true) // cloneNode faz uma copia dos elementos
@@ -155,8 +126,9 @@ MilkshakeJson.map((item, index) => {
 })
 
 // Mapear os cascões
-
-cascaoJson.map((item, index) => {
+const cascao = produtosJson.filter((produto) => produto.type === "Cascao")
+console.log(cascao)
+cascao.map((item, index) => {
     console.log(item)
 
     let cascaoItem = document.querySelector('.models .milk-item').cloneNode(true) // clona o elemento
@@ -172,7 +144,7 @@ cascaoJson.map((item, index) => {
         e.preventDefault()  // faz com que o link não faça o padrão que seria dar o refresh
         console.log('Clicou no cascão')
 
-        let chave = pegarKeyCascao(e)
+        let chave = pegarKeyMilk(e)
 
         // Para abrir o modal quando for clicado em algum cascão
         abrirModal()
@@ -188,8 +160,9 @@ cascaoJson.map((item, index) => {
 })
 
 //Mapear a area kids
-
-KidsJson.map((item, index) => {
+const kids = produtosJson.filter((produto) => produto.type === "Kids")
+console.log(kids)
+kids.map((item, index) => {
     console.log(item)
 
     let kidsItem = document.querySelector('.models .milk-item').cloneNode(true) //clona o elemento
@@ -205,7 +178,7 @@ KidsJson.map((item, index) => {
         e.preventDefault() // faz com que não faça o padrao que no caso do a seria dar refresh
         console.log('Clicou em algum produto da area kids')
 
-        let chave = pegarKeyKids(e)
+        let chave = pegarKeyMilk(e)
 
         // Para abrir o modal quando for clicado em algum cascão
         abrirModal()
