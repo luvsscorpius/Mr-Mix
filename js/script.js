@@ -47,55 +47,7 @@ const botoesFechar = () => {
     })
 }
 
-const adicionarNoCarrinho = () => {
-    seleciona('.milkshakeInfo--addButton').addEventListener('click', () => {
-        console.log('Adicionei')
-
-        //pegar dados da janela modal atual
-        // qual produto? pegue o modalkey para usar produtosJson[modalkey]
-        console.log('Prod.:' + modalKey)
-
-        //tamanho
-        let size = seleciona('.milkshake--size.selected').getAttribute('data-key')
-        console.log('Tamanho' + size)
-
-        //quantidade
-        console.log('Quant' + qtProdutos)
-
-        // preco 
-        let price = seleciona('.milkshakeInfo--actualPrice').innerHTML.replace('R$&nbsp', '')
-
-        //crie um identificador que junte id e tamanho
-        // concatene as duas informações separadas por um símbolo
-        let identificador = produtosJson[modalkey].id + 't' + size
-
-        // antes de adicionar verifique se ja tem aquele codigo e tamanho
-        // para adicionarmos a quantidade
-        let key = cart.findIndex((item) => item.identificador == identificador)
-        console.log(key)
-
-        if (key > -1) {
-            // se encontrar aumente a quantidade
-            cart[key].qt += qtProdutos
-        } else {
-            // adicionar objeto pizza no carrinho
-            let pizza = {
-                identificador,
-                id: produtosJson[modalkey].id,
-                size,
-                qt: qtProdutos,
-                price: parseFloat(price)
-            }
-            cart.push(produto)
-            console.log(produto)
-            console.log('Sub total R$' + (qtProdutos * produto.price).toFixed[2])
-        }
-        fecharModal()
-    })
-}
-
-
-const pegarKeyMilk = (e) => {
+const pegarKey = (e) => {
     let key = e.target.closest('.milk-item').getAttribute('data-key')
     console.log('Milkshake Clicado ' + key)
     console.log(produtosJson[key])
@@ -210,7 +162,7 @@ produtosJson.map((item, index) => {
             e.preventDefault() // faz o a (link) nao fazer o padrao que é dar refresh
             console.log('Clicou no milkshake')
 
-            let chave = pegarKeyMilk(e)
+            let chave = pegarKey(e)
 
             //mudar a quantidade 
             mudarQuantidade()
@@ -223,8 +175,6 @@ produtosJson.map((item, index) => {
 
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
-
-
         })
     }
 
@@ -240,7 +190,7 @@ produtosJson.map((item, index) => {
             e.preventDefault()  // faz com que o link não faça o padrão que seria dar o refresh
             console.log('Clicou no cascão')
 
-            let chave = pegarKeyMilk(e)
+            let chave = pegarKey(e)
 
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
@@ -250,6 +200,7 @@ produtosJson.map((item, index) => {
 
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
+
         })
     }
 
@@ -265,7 +216,7 @@ produtosJson.map((item, index) => {
             e.preventDefault() // faz com que não faça o padrao que no caso do a seria dar refresh
             console.log('Clicou em algum produto da area kids')
 
-            let chave = pegarKeyMilk(e)
+            let chave = pegarKey(e)
 
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
@@ -279,5 +230,4 @@ produtosJson.map((item, index) => {
         })
     }
 })
-
 
