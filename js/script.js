@@ -24,6 +24,98 @@ const formatoMonetario = (valor) => {
     }
 }
 
+// Adicionar no carrinho
+
+const adicionarNoCarrinho = () => {
+    seleciona('.milkshakeInfo--addButton').addEventListener('click', () => {
+        console.log('Adicionei')
+
+    // pegar dados da janela modal atual
+    // Qual produto?? pegue a key com modalkey
+    if(modalKey == null) {alert('Modal nula')}
+
+    // tamanho 
+    let size = seleciona('.milkshakeInfo--size.selected').getAttribute('data-key')
+    console.log("Tamanho " + size)
+
+    // Quantidade
+    console.log("Quant. " + qtMilkshake)
+
+    // preco
+    let price = seleciona('.milkshakeInfo--actualPrice').innerHTML.replace('R$&nbsp;', '')
+    console.log(price)
+
+    // precisamos criar um identificador agora que junte id e tamanho 
+    let identificador =  produtosJson[modalKey].id+'t'+size
+
+    // antes de adicionar precisamos verificar se ja tem aquele codigo e tamanho
+    // para adicionarmos a quantidade
+    let key = cart.findIndex((item) => item.identificador == identificador)
+    console.log(key)
+
+    if (key > -1) {
+        // se encontrar aumente a quantidade
+        cart[key].qt += qtMilkshake
+    } else {
+        // adicionar o produto no carrinho
+        let produto = {
+            identificador,
+            id: produtosJson[modalKey].id,
+            size,
+            qt: qtMilkshake,
+            price: price
+        }
+        cart.push(produto) // manda o produto pro carrinho
+        console.log(produto)
+        console.log('Sub total R$ ' + (produto.qt * produto.price).toFixed(2))
+    }
+    fecharModal()
+    abrirCarrinho()
+    fecharCarrinho()
+    finalizarCompra()
+    })
+}
+
+// Abrir o carrinho 
+
+const abrirCarrinho = () => {
+    console.log('Quantidade de itens do carrinho ' + cart.length)
+    if(cart.length > 0) {
+        //mostrar o carrinho
+        seleciona('aside').classList.add('show')
+        seleciona('header').style.display = 'flex'
+    }
+
+    // exibir o carrinho no modo mobile
+    seleciona('.menu-openner').addEventListener('click', () => {
+        if(cart.lenght > 0) {
+            seleciona('aside').style.left = '0'
+        }
+    })
+}
+
+// fechar carrinho
+
+const fecharCarrinho = () => {
+    // fechar o carrinho com o botao X no mobile 
+    seleciona('.menu-closer').addEventListener('click', () => {
+        seleciona('aside').style.left = '100vw' // usando 100vw ele ficara fora da tela
+        seleciona('header').style.display = 'flex'
+    })
+}
+
+// Finalizar compra 
+
+const finalizarCompra = () => {
+    // fechar o carrinho em um aparelho que nao seja mobile
+    seleciona('.cart--finalizar').addEventListener('click', () => {
+        seleciona('aside').classList.remove('show')
+        console.log('Finalizei')
+        seleciona('aside').style.left = '100vw'
+        seleciona('header').style.display = 'flex'
+    })
+}
+
 // Para abrir o modal
 
 const abrirModal = () => {
@@ -79,51 +171,6 @@ const preencheDadosModal = (item) => {
     return id
 }
 
-const preencherTamanhos = (key) => {
-    // tirar a selecao de tamanho atual e selecionar o tamanho grande
-    seleciona('.milkshake--size.selected').classList.remove('selected')
-
-    // selecionar todos os tamanhos
-    selecionaTodos('.milkshake--size').forEach((size, sizeIndex) => {
-        // selecionar o tamanho grande
-        (sizeIndex == 2) ? size.classList.add('selected') : ''
-        size.querySelector('span').innerHTML = produtosJson[key].sizes[sizeIndex]
-    })
-}
-
-const escolherTamanhoPreco = (key) => {
-    // Ações nos botões de tamanho
-    // Selecionar todos os tamanhos
-    selecionaTodos('.milkshakeInfo--size').forEach((size, sizeIndex) => {
-        size.addEventListener('click', (e) => {
-            //clicou em um item, tira a seleção dos outros e marca o que voce selecionou
-            // tirar a seleção de tamanho atual e selecionar o tamanho grande
-            seleciona('.milkshakeInfo--size.selected').classList.remove('selected')
-            // marcar o que voce clicou, ao inves de usar o e.target use size, pois ele é nosso item dentro do loop
-            size.classList.add('selected')
-
-            //mudar o preço de acordo com o tamanho
-            seleciona('milkshakeInfo--actualPrice').innerHTML = formatoReal(produtosJson[key].price[sizeIndex])
-        })
-    })
-}
-
-const abrirCarrinho = () => {
-    console.log('Qtd de itens no carrinho' + cart.length)
-    if (cart.length > 0) {
-        //mostrar o carrinho
-        seleciona('aside').classList.add('show')
-        seleciona('header').style.display = 'flex' // mostrar barra superior
-    }
-
-    // exibir o aside do carrinho no mobile
-    seleciona('.menu-openner').addEventListener('click', () => {
-        if (cart.length > 0) {
-            seleciona('aside').classList.add('show')
-            seleciona('aside').style.left = '0'
-        }
-    })
-}
 
 const mudarQuantidade = () => {
     // Ações nos botões + - da janela modal
@@ -175,6 +222,7 @@ produtosJson.map((item, index) => {
 
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
+
         })
     }
 
@@ -191,6 +239,9 @@ produtosJson.map((item, index) => {
             console.log('Clicou no cascão')
 
             let chave = pegarKey(e)
+            
+            //mudar a quantidade 
+            mudarQuantidade()
 
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
@@ -218,6 +269,9 @@ produtosJson.map((item, index) => {
 
             let chave = pegarKey(e)
 
+            //mudar a quantidade 
+            mudarQuantidade()
+
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
 
@@ -230,4 +284,40 @@ produtosJson.map((item, index) => {
         })
     }
 })
+
+/*const preencherTamanhos = (key) => {
+    // ações no tamanho botão e seleciona o grande
+    seleciona('.milkshakeInfo--size.selected').classList.remove('selected')
+
+    // selecionar todos os tamanhos
+    selecionaTodos('milkshakeInfo--size').forEach((size, sizeIndex) => {
+        // selecionar o tamanho grande
+        (sizeIndex == 2) ? size.classList.add('selected') : ''
+       // size.querySelector('span').innerHTML = produtosJson[key].sizes[sizeIndex]
+    })
+}
+
+const escolherTamanhoPreco = (key) => {
+    // Ações nos botões de tamanho
+    // Selecionar todos os tamanhos
+    selecionaTodos('.milkshakeInfo--size').forEach((size, sizeIndex) => {
+        size.addEventListener('click', (e) => {
+            // clicou em um item tira a seleção do padrao e seleciona o que voce clicou
+            seleciona('.milkshakeInfo--size.selected').classList.remove('selected')
+
+            // marcar o que voce clicou, ao inves de usar e.target use size
+            size.classList.add('selected')
+
+            // mudar o preco de acordo com o tamanho
+            seleciona('.milkshakeInfo--actualPrice').innerHTML = formatoReal(produtosJson[key].price[sizeIndex])
+        })
+    })
+} 
+*/
+
+// Carrinho
+adicionarNoCarrinho()
+abrirCarrinho()
+fecharCarrinho()
+finalizarCompra()
 
