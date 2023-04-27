@@ -30,49 +30,49 @@ const adicionarNoCarrinho = () => {
     seleciona('.milkshakeInfo--addButton').addEventListener('click', () => {
         console.log('Adicionei')
 
-    // pegar dados da janela modal atual
-    // Qual produto?? pegue a key com modalkey
-    if(modalKey == null) {alert('Modal nula')}
+        // pegar dados da janela modal atual
+        // Qual produto?? pegue a key com modalkey
+        if (modalKey == null) { alert('Modal nula') }
 
-    // tamanho 
-    let size = seleciona('.milkshakeInfo--size.selected').getAttribute('data-key')
-    console.log("Tamanho " + size)
+        // tamanho 
+        let size = seleciona('.milkshakeInfo--size.selected').getAttribute('data-key')
+        console.log("Tamanho " + size)
 
-    // Quantidade
-    console.log("Quant. " + qtMilkshake)
+        // Quantidade
+        console.log("Quant. " + qtMilkshake)
 
-    // preco
-    let price = seleciona('.milkshakeInfo--actualPrice').innerHTML.replace('R$&nbsp;', '')
-    console.log(price)
+        // preco
+        let price = seleciona('.milkshakeInfo--actualPrice').innerHTML.replace('R$&nbsp;', '')
+        console.log(price)
 
-    // precisamos criar um identificador agora que junte id e tamanho 
-    let identificador =  produtosJson[modalKey].id+'t'+size
+        // precisamos criar um identificador agora que junte id e tamanho 
+        let identificador = produtosJson[modalKey].id + 't' + size
 
-    // antes de adicionar precisamos verificar se ja tem aquele codigo e tamanho
-    // para adicionarmos a quantidade
-    let key = cart.findIndex((item) => item.identificador == identificador)
-    console.log(key)
+        // antes de adicionar precisamos verificar se ja tem aquele codigo e tamanho
+        // para adicionarmos a quantidade
+        let key = cart.findIndex((item) => item.identificador == identificador)
+        console.log(key)
 
-    if (key > -1) {
-        // se encontrar aumente a quantidade
-        cart[key].qt += qtMilkshake
-    } else {
-        // adicionar o produto no carrinho
-        let produto = {
-            identificador,
-            id: produtosJson[modalKey].id,
-            size,
-            qt: qtMilkshake,
-            price: price
+        if (key > -1) {
+            // se encontrar aumente a quantidade
+            cart[key].qt += qtMilkshake
+        } else {
+            // adicionar o produto no carrinho
+            let produto = {
+                identificador,
+                id: produtosJson[modalKey].id,
+                size,
+                qt: qtMilkshake,
+                price: price
+            }
+            cart.push(produto) // manda o produto pro carrinho
+            console.log(produto)
+            console.log('Sub total R$ ' + (produto.qt * produto.price).toFixed(2))
         }
-        cart.push(produto) // manda o produto pro carrinho
-        console.log(produto)
-        console.log('Sub total R$ ' + (produto.qt * produto.price).toFixed(2))
-    }
-    fecharModal()
-    abrirCarrinho()
-    fecharCarrinho()
-    finalizarCompra()
+        fecharModal()
+        abrirCarrinho()
+        fecharCarrinho()
+        finalizarCompra()
     })
 }
 
@@ -80,7 +80,7 @@ const adicionarNoCarrinho = () => {
 
 const abrirCarrinho = () => {
     console.log('Quantidade de itens do carrinho ' + cart.length)
-    if(cart.length > 0) {
+    if (cart.length > 0) {
         //mostrar o carrinho
         seleciona('aside').classList.add('show')
         seleciona('header').style.display = 'flex'
@@ -88,7 +88,7 @@ const abrirCarrinho = () => {
 
     // exibir o carrinho no modo mobile
     seleciona('.menu-openner').addEventListener('click', () => {
-        if(cart.lenght > 0) {
+        if (cart.lenght > 0) {
             seleciona('aside').style.left = '0'
         }
     })
@@ -211,6 +211,12 @@ produtosJson.map((item, index) => {
 
             let chave = pegarKey(e)
 
+            // preencher tamanhos
+            preencherTamanhos(item.id)
+
+            // escolher tamanho/preço
+            escolherTamanhoPreco(item.id)
+
             //mudar a quantidade 
             mudarQuantidade()
 
@@ -239,7 +245,13 @@ produtosJson.map((item, index) => {
             console.log('Clicou no cascão')
 
             let chave = pegarKey(e)
-            
+
+            // preencher tamanhos
+            preencherTamanhos(item.id)
+
+            // escolher tamanho/preço
+            escolherTamanhoPreco(item.id)
+
             //mudar a quantidade 
             mudarQuantidade()
 
@@ -269,6 +281,12 @@ produtosJson.map((item, index) => {
 
             let chave = pegarKey(e)
 
+            // preencher tamanhos
+            preencherTamanhos(item.id)
+
+            // escolher tamanho/preço
+            escolherTamanhoPreco(item.id)
+
             //mudar a quantidade 
             mudarQuantidade()
 
@@ -285,35 +303,34 @@ produtosJson.map((item, index) => {
     }
 })
 
-/*const preencherTamanhos = (key) => {
+const preencherTamanhos = (key) => {
     // ações no tamanho botão e seleciona o grande
     seleciona('.milkshakeInfo--size.selected').classList.remove('selected')
 
     // selecionar todos os tamanhos
-    selecionaTodos('milkshakeInfo--size').forEach((size, sizeIndex) => {
+    selecionaTodos('.milkshakeInfo--size').forEach((size, sizeIndex) => {
         // selecionar o tamanho grande
         (sizeIndex == 2) ? size.classList.add('selected') : ''
-       // size.querySelector('span').innerHTML = produtosJson[key].sizes[sizeIndex]
+        // size.querySelector('span').innerHTML = produtosJson[key].sizes[sizeIndex]
     })
 }
 
 const escolherTamanhoPreco = (key) => {
     // Ações nos botões de tamanho
-    // Selecionar todos os tamanhos
+    // selecionar todos os tamanhos
     selecionaTodos('.milkshakeInfo--size').forEach((size, sizeIndex) => {
         size.addEventListener('click', (e) => {
-            // clicou em um item tira a seleção do padrao e seleciona o que voce clicou
+            // clicou em um item, tirar a selecao dos outros e marca o q vc clicou
+            // tirar a selecao de tamanho atual e selecionar o tamanho grande
             seleciona('.milkshakeInfo--size.selected').classList.remove('selected')
-
-            // marcar o que voce clicou, ao inves de usar e.target use size
+            // marcar o que vc clicou, ao inves de usar e.target use size, pois ele é nosso item dentro do loop
             size.classList.add('selected')
 
-            // mudar o preco de acordo com o tamanho
+            // mudar o preço de acordo com o tamanho
             seleciona('.milkshakeInfo--actualPrice').innerHTML = formatoReal(produtosJson[key].price[sizeIndex])
         })
     })
-} 
-*/
+}
 
 // Carrinho
 adicionarNoCarrinho()
