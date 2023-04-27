@@ -87,13 +87,15 @@ const abrirCarrinho = () => {
         seleciona('header').style.display = 'flex'
     }
 
-    // exibir o carrinho no modo mobile
+    // exibir aside do carrinho no modo mobile
     seleciona('.menu-openner').addEventListener('click', () => {
-        if (cart.lenght > 0) {
+        if (cart.length > 0) {
+            seleciona('aside').classList.add('show')
             seleciona('aside').style.left = '0'
         }
     })
 }
+
 
 // fechar carrinho
 
@@ -143,7 +145,7 @@ const atualizarCarrinho = () => {
             // preencher as informações
             cartItem.querySelector('img').src = produtoItem.img
             cartItem.querySelector('.cart--item-nome').innerHTML = produtoName
-            cartItem.querySelector('.cart--iteme-qt').innerHTML = cart[i].qt
+            cartItem.querySelector('.cart--item-qt').innerHTML = cart[i].qt
 
             // selecionar botoes + e -
             cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
@@ -308,6 +310,8 @@ produtosJson.map((item, index) => {
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
 
+            seleciona('.cart--item-qt').innerHTML = qtMilkshake // definir qt = 1
+
         })
     }
 
@@ -343,6 +347,8 @@ produtosJson.map((item, index) => {
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
 
+            seleciona('.cart--item-qt').innerHTML = qtCascao // definir qt = 1
+
         })
     }
 
@@ -377,6 +383,8 @@ produtosJson.map((item, index) => {
 
             // preencher os dados dos vetores no modal 
             preencheDadosModal(item)
+
+            seleciona('.cart--item-qt').innerHTML = qtKids // definir qt = 1
 
         })
     }

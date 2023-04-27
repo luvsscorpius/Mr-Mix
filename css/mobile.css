@@ -1,0 +1,99 @@
+body {
+    flex-direction: column;
+}
+
+.milkshake-area{
+    grid-template-columns: repeat(1, 1fr);
+    display: block;
+}
+
+.cascao-area{
+    grid-template-columns: repeat(1, 1fr);
+    display: block;
+}
+
+.kids-area{
+    grid-template-columns: repeat(1, 1fr);
+    display: block;
+}
+
+header {
+    display: flex;
+}
+
+aside {
+    width: auto;
+    position: fixed;
+    left: 100vw;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all ease .2s;
+}
+
+aside.show {
+    width: auto;
+}
+
+.cart--area {
+    width: 100vw;
+}
+
+.menu-closer {
+    display: block;
+}
+
+.milkshakeWindowArea {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.milkshakeWindowBody {
+    width: 100vw;
+    display: block;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+.milkshakeBig img {
+    width: 75%;
+    height: auto;
+}
+
+.milkshakeInfo h1 {
+    margin-top: 20px;
+}
+
+.milkshakeInfo--qtarea {
+    height: 60px;
+}
+
+.milkshakeInfo--qtarea button {
+    font-size: 25px;
+    padding: 0px 25px;
+}
+
+.milkshakeInfo--qt {
+    line-height: 60px;
+    font-size: 20px;
+}
+
+.milkshakeInfo--addButton {
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.milkshakeInfo--cancelButton {
+    display: none;
+}
+
+.milkshakeInfo--cancelMobileButton {
+    display: block;
+}
+
+
+
