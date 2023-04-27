@@ -2,6 +2,8 @@ body {
     flex-direction: column;
 }
 
+/* main */
+
 .milkshake-area{
     grid-template-columns: repeat(1, 1fr);
     display: block;
@@ -17,9 +19,13 @@ body {
     display: block;
 }
 
+/* header */
+
 header {
     display: flex;
 }
+
+/* aside */
 
 aside {
     width: auto;
@@ -42,6 +48,8 @@ aside.show {
 .menu-closer {
     display: block;
 }
+
+/* milkshakeWindowArea */
 
 .milkshakeWindowArea {
     justify-content: flex-start;
