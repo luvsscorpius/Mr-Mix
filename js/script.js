@@ -71,8 +71,6 @@ const adicionarNoCarrinho = () => {
         }
         fecharModal()
         abrirCarrinho()
-        fecharCarrinho()
-        finalizarCompra()
         atualizarCarrinho()
     })
 }
@@ -113,11 +111,11 @@ const atualizarCarrinho = () => {
     // exibir quantidade de itens no carrinho
     seleciona('.menu-openner span').innerHTML = cart.length
 
-    if(cart.length > 0) {
+    if (cart.length > 0) {
         // mostrar carrinho
         seleciona('aside').classList.add('show')
 
-        // zerar o cart para não fazer inserções duplicadas
+        // zerar meu .cart para nao fazer insercoes duplicadas
         seleciona('.cart').innerHTML = ''
 
         // variaveis antes do for
@@ -126,7 +124,7 @@ const atualizarCarrinho = () => {
         let desconto = 0
 
         // para preencher itens no carrinho e calcular subtotal
-        for(let i in cart){
+        for (let i in cart) {
             // use o find para pegar o item por id
             let produtoItem = produtosJson.find((item) => item.id == cart[i].id)
             console.log(produtoItem)
@@ -134,15 +132,15 @@ const atualizarCarrinho = () => {
             // em cada item pegar o subtotal
             subtotal += cart[i].price * cart[i].qt
 
-            // fazer o clone e depois fazer aparecer na tela
+            // fazer o clone, exibir na telas e depois preencher as informacoes
             let cartItem = seleciona('.models .cart--item').cloneNode(true)
             seleciona('.cart').append(cartItem)
 
             let produtoSizeName = cart[i].size
-            
+
             let produtoName = `${produtoItem.name} (${produtoSizeName})`
 
-            // preencher as informações
+            // preencher as informacoes
             cartItem.querySelector('img').src = produtoItem.img
             cartItem.querySelector('.cart--item-nome').innerHTML = produtoName
             cartItem.querySelector('.cart--item-qt').innerHTML = cart[i].qt
@@ -156,13 +154,13 @@ const atualizarCarrinho = () => {
 
             cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
                 console.log('Clicou no botão menos')
-                if(cart[i].qt > 1){
+                if (cart[i].qt > 1) {
                     cart[i].qt--
                 } else {
                     // remover se for zero
                     cart.splice(i, 1)
                 }
-                    (cart.length < 1) ? seleciona('header').style.display = 'flex' : ''
+                (cart.length < 1) ? seleciona('header').style.display = 'flex' : ''
 
                 atualizarCarrinho()
             })
@@ -194,6 +192,8 @@ const finalizarCompra = () => {
         console.log('Finalizei')
         seleciona('aside').style.left = '100vw'
         seleciona('header').style.display = 'flex'
+        cart = []
+        seleciona('.menu-openner span').innerHTML = cart.length
     })
 }
 
@@ -226,13 +226,14 @@ const pegarKey = (e) => {
     console.log(produtosJson[key])
 
     // garantir que a quantidade inicial de milkshakes é 1 
-    qtMilkshakes = 1
+    qtMilkshake = 1
 
     //para manter a informação de qual milkshake foi clicado
     modalKey = key
 
     return key
 }
+
 
 const preencherDadosDoItem = (itemElement, item, index) => {
     itemElement.setAttribute('data-key', index)
@@ -249,6 +250,7 @@ const preencheDadosModal = (item) => {
     seleciona('.milkshakeInfo h1').innerHTML = item.name
     seleciona('.milkshakeInfo--actualPrice').innerHTML = formatoReal(item.price[2])
     seleciona('.milkshakeInfo--desc').innerHTML = item.description
+    seleciona('.milkshakeInfo--qt').innerHTML = qtMilkshake
     return id
 }
 
@@ -298,10 +300,7 @@ produtosJson.map((item, index) => {
             // escolher tamanho/preço
             escolherTamanhoPreco(item.id)
 
-            //mudar a quantidade 
-            mudarQuantidade()
-
-            // quando clicar em um milkshake a janela modal abre
+            // quando    clicar em um milkshake a janela modal abre
             abrirModal()
 
             // quando clicar em algum botão para cancelar fecha o modal
@@ -334,9 +333,6 @@ produtosJson.map((item, index) => {
 
             // escolher tamanho/preço
             escolherTamanhoPreco(item.id)
-
-            //mudar a quantidade 
-            mudarQuantidade()
 
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
@@ -371,9 +367,6 @@ produtosJson.map((item, index) => {
 
             // escolher tamanho/preço
             escolherTamanhoPreco(item.id)
-
-            //mudar a quantidade 
-            mudarQuantidade()
 
             // Para abrir o modal quando for clicado em algum cascão
             abrirModal()
@@ -421,7 +414,7 @@ const escolherTamanhoPreco = (key) => {
 
 // Carrinho
 adicionarNoCarrinho()
-abrirCarrinho()
 fecharCarrinho()
 finalizarCompra()
 atualizarCarrinho()
+mudarQuantidade()
